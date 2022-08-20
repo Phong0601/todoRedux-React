@@ -71,10 +71,14 @@ const todoListReducer = createSlice({
       state.todoList.push(action.payload);
     },
     checkedBox: (state, action) => {
-      const found = state.todoList.find((item) => (item.id === action.payload));
+      const found = state.todoList.find((item) => item.id === action.payload);
       if (found) {
         found.completed = !found.completed;
       }
+    },
+    delete: (state, action) => {
+      const index = state.todoList.findIndex((item) => item.id === action.payload);
+      if(index !== -1) state.todoList.splice(index,1);
     },
   },
 });

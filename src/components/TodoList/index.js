@@ -16,6 +16,7 @@ export default function TodoList() {
   const [priority, setPriority] = useState("Medium");
 
   const handleAddBtn = () => {
+    if(!todoName) return ;
     dispatch(
       todoListReducer.actions.addTodo({
         id: v4uuid(),
@@ -31,11 +32,12 @@ export default function TodoList() {
     setTodoName(e.target.value);
   };
   const handlePriority = (value) => {
+    
     setPriority(value);
   };
   return (
     <Row style={{ height: "calc(100% - 40px)" }}>
-      <Col span={24} style={{ height: "calc(100% - 40px)", overflowY: "auto" }}>
+      <Col span={24} style={{ height: "250px", overflowY: "auto" }}>
         {todoList.map((item) => {
           return (
             <Todo
